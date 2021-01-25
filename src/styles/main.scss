@@ -6,16 +6,8 @@ $days:
   "sat" 5,
   "sun" 6;
 
-%container {
-  background-color: #eee;
-  height: 100px;
-  width: 100px;
-  border: 1px solid black;
-}
-
 * {
   box-sizing: border-box;
-  font-family: inherit;
 }
 
 html {
@@ -39,14 +31,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: #eee;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    transition: all 500ms ease 0s;
+
     &:hover {
-      margin-top: -20px;
+      transform: translate(0,-20px);
       background-color: pink;
-      transition: 500ms ease;
       cursor: pointer;
     }
   }
-
 }
 
 @each $day,$i in $days {
@@ -55,38 +52,18 @@ body {
   }
 }
 
-@for $i from 1 through 28 {
+@for $i from 1 through 31 {
   .calendar div:nth-child(#{$i}) {
-    @extend %container;
     &::before {
       content: "#{$i}";
     }
   }
 }
 
-@for $i from 29 to 30 {
-  .calendar-29 div:nth-child(#{$i}) {
-    @extend %container;
-    &::before {
-      content: "#{$i}";
-    }
-  }
-}
-
-@for $i from 29 to 31 {
-  .calendar-30 div:nth-child(#{$i}) {
-    @extend %container;
-    &::before {
-      content: "#{$i}";
-    }
-  }
-}
-
-@for $i from 29 to 32 {
-  .calendar-31 div:nth-child(#{$i}) {
-    @extend %container;
-    &::before {
-      content: "#{$i}";
+@for $i from 28 through 31 {
+  @for $j from $i through 31 {
+    .calendar-#{$i} div:nth-child(#{$j+1}) {
+      display: none;
     }
   }
 }
