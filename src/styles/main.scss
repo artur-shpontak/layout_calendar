@@ -36,7 +36,8 @@ body {
     height: 100px;
     width: 100px;
     border: 1px solid black;
-    transition: all 500ms ease 0s;
+
+    transition: background-color 0.5s, transform 0.5s;
 
     &:hover {
       transform: translate(0,-20px);
